@@ -1,7 +1,6 @@
+import clear
 import ej01_constant as cs
 import ej02_functions as ft
-import time
-import clear
 import ej03_user as us
 
 def main():
