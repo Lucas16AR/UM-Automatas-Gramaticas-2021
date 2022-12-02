@@ -11,6 +11,8 @@ class User:
         df = df.dropna()
         return df
 
+
+#number1
     def list_session_id(self):
         print(cs.JUMP_LINE)
         inp = input(cs.UN_INP)
@@ -33,26 +35,8 @@ class User:
         df = self.operate_xlsx_file()
         print(df)
 
-    def mac_user_devices(self):
-        print(cs.JUMP_LINE)
-        inp = input(cs.MAC_USER_INP)
-        print(cs.JUMP_LINE)
-        print(cs.SEARCHING_DATA)
-        df = self.operate_xlsx_file()
-        
-        if inp in df.values:
-            df_loc = df.loc[:,["MAC Cliente", "Usuario"]]
-            macs = df_loc[df_loc["MAC Cliente"].isin([inp])]
-            mac_user = macs.groupby(['MAC Cliente', 'Usuario']).size().reset_index(name='Cantidad de Veces Utilizada')
-            print(cs.JUMP_LINE)
-            print(mac_user)
-            mac_user.to_excel(cs.PATH_MAC_USER)
-            print(cs.JUMP_LINE, cs.TO_EXCEL)
-        else:
-            print(cs.JUMP_LINE)
-            print(cs.MAC_NOT_FOUND)
-        time.sleep(0.1)
 
+#number2
     def datetime_search(self):
         print(cs.JUMP_LINE)
         regex = re.compile(cs.DATETIME_REGEX)
@@ -95,6 +79,8 @@ class User:
             print(cs.JUMP_LINE, cs.WRONG_DT_1)
         time.sleep(0.1)
         
+
+#number 3
     def total_session_time(self):
         print(cs.JUMP_LINE)
         inp = input(cs.UN_INP)
@@ -112,7 +98,31 @@ class User:
         else:
             print(cs.JUMP_LINE, cs.USER_NOT_FOUND)
         time.sleep(0.1)
-    
+
+
+#number4
+    def mac_user_devices(self):
+        print(cs.JUMP_LINE)
+        inp = input(cs.MAC_USER_INP)
+        print(cs.JUMP_LINE)
+        print(cs.SEARCHING_DATA)
+        df = self.operate_xlsx_file()
+        
+        if inp in df.values:
+            df_loc = df.loc[:,["MAC Cliente", "Usuario"]]
+            macs = df_loc[df_loc["MAC Cliente"].isin([inp])]
+            mac_user = macs.groupby(['MAC Cliente', 'Usuario']).size().reset_index(name='Cantidad de Veces Utilizada')
+            print(cs.JUMP_LINE)
+            print(mac_user)
+            mac_user.to_excel(cs.PATH_MAC_USER)
+            print(cs.JUMP_LINE, cs.TO_EXCEL)
+        else:
+            print(cs.JUMP_LINE)
+            print(cs.MAC_NOT_FOUND)
+        time.sleep(0.1)
+
+
+#number5
     def mac_ap(self):
         print(cs.JUMP_LINE)
         regex = re.compile(cs.DATETIME_REGEX)
