@@ -64,9 +64,9 @@ class User:
                 df = self.operate_xlsx_file()
                 
                 if usr_input in df.values and date_1 < date_2:
-                    df_loc = df.reindex(["Usuario","Inicio de Conexi¢n"])
+                    df_loc = df.reindex(["Usuario","Inicio de Conexion"])
                     usr_df = df_loc[df_loc["Usuario"].isin([usr_input])]
-                    date_df = usr_df.loc[df["Inicio de Conexi¢n"].between(date_1, date_2)]
+                    date_df = usr_df.loc[usr_df["Inicio de Conexion"].between(date_1, date_2)]
                     print(cs.JUMP_LINE)
                     print(date_df)
                     date_df.to_excel(cs.PATH_DATE_USR)
@@ -123,7 +123,7 @@ class User:
 
 
 #number5
-    def mac_ap(self):
+    def mac_ap(self, specific_date = None):
         print(cs.JUMP_LINE)
         regex = re.compile(cs.DATETIME_REGEX)
         opt_inp = input(cs.DATETIME_RANGE_INPUT)
@@ -137,24 +137,39 @@ class User:
             time.sleep(0.1)
             exit()
 
-        if opt_inp == "y":
-            print(cs.JUMP_LINE, cs.DT_RANGE_MSG)
-            time.sleep(2)
-            print(cs.JUMP_LINE)
-            date_1 = str(input(cs.DATETIME_INPUT_1))
-            validation_date = regex.fullmatch(date_1)
-            print(cs.JUMP_LINE)
-            print(cs.VALIDATE_CHECKING)
-            time.sleep(2)
+        #if opt_inp == "y":
+        #    print(cs.JUMP_LINE, cs.DT_RANGE_MSG)
+        #    time.sleep(2)
+        #    print(cs.JUMP_LINE)
+        #    date_1 = str(input(cs.DATETIME_INPUT_1))
+        #    validation_date = regex.fullmatch(date_1)
+        #    print(cs.JUMP_LINE)
+        #    print(cs.VALIDATE_CHECKING)
+        #    time.sleep(2)
         
+        if specific_date is not None:
+            date_1 = specific_date
+            validation_date = regex.fullmatch(date_1)
+        else:
+            if opt_inp == "y":
+                print(cs.JUMP_LINE, cs.DT_RANGE_MSG)
+                time.sleep(2)
+                print(cs.JUMP_LINE)
+                date_1 = str(input(cs.DATETIME_INPUT_1))
+                validation_date = regex.fullmatch(date_1)
+                print(cs.JUMP_LINE)
+                print(cs.VALIDATE_CHECKING)
+                time.sleep(2)
+
+
         if opt_inp != 'y':
             time.sleep(0.1)
             exit
-        
+
         if opt_inp != 'n':
             time.sleep(0.1)
             exit
-        
+     
             if validation_date:
                 print(cs.JUMP_LINE, cs.VALIDATE_CORRECT, cs.JUMP_LINE)
                 date_2 = str(input(cs.DATETIME_INPUT_2))
@@ -168,8 +183,8 @@ class User:
                     print(cs.JUMP_LINE,cs.SEARCHING_DATA, cs.JUMP_LINE)
                     df = self.operate_xlsx_file()
                     if mac_ap_input in df.values and date_1 < date_2:
-                        df_loc = df.loc[:,["MAC AP", "Usuario", "Inicio de Conexi¢n", "Fin de Conexio"]]
-                        df_mac_date = df_loc[(df_loc["MAC AP"].isin([mac_ap_input])) & (df_loc["Inicio de Conexi¢n"].between(date_1, date_2))]
+                        df_loc = df.loc[:,["MAC AP", "Usuario", "Inicio de Conexion", "Fin de Conexio"]]
+                        df_mac_date = df_loc[(df_loc["MAC AP"].isin([mac_ap_input])) & (df_loc["Inicio de Conexion"].between(date_1, date_2))]
                         print(df_mac_date)
                         df_mac_date.to_excel(cs.PATH_MAC_DT)
                         print(cs.JUMP_LINE, cs.TO_EXCEL)
@@ -199,8 +214,8 @@ class User:
                 df = self.operate_xlsx_file()
             
                 if mac_ap_input in df.values and date_1 < date_2:
-                    df_loc = df.loc[:,["MAC AP", "Usuario", "Inicio de Conexi¢n", "Fin de Conexio"]]
-                    df_mac_date = df_loc[(df_loc["MAC AP"].isin([mac_ap_input])) & (df_loc["Inicio de Conexi¢n"].between(date_1, date_2))]
+                    df_loc = df.loc[:,["MAC AP", "Usuario", "Inicio de Conexion", "Fin de Conexio"]]
+                    df_mac_date = df_loc[(df_loc["MAC AP"].isin([mac_ap_input])) & (df_loc["Inicio de Conexion"].between(date_1, date_2))]
                     print(df_mac_date)
                     df_mac_date.to_excel(cs.PATH_MAC_DT)
                     print(cs.JUMP_LINE, cs.TO_EXCEL)

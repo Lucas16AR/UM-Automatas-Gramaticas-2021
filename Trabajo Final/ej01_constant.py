@@ -14,7 +14,9 @@ MENU = '''
     '''
 
 #REGEX
-DATETIME_REGEX = ('''(0[1-9]|[12]\d|3[01])\/([1-9]|1[0-2])\/[12]\d{3} ([01][0-9]|2[0-3]):[0-5]\d:[0-5]\d''')
+#DATETIME_REGEX = ('''(0[1-9]|[12]\d|3[01])\/([1-9]|1[0-2])\/[12]\d{3} ([0-1][0-9]|2[0-3]):[0-5]\d:[0-5]\d''')
+DATETIME_REGEX = r'\d{2}/\d{2}/\d{4}\s\d{2}:\d{2}:\d{2}'
+
 
 #PATHS
 PATH_TXT = "usuarios.txt"
@@ -36,6 +38,7 @@ DATETIME_INPUT_2 = "Ingrese la fecha con este formato >>> DD/MM/YYYY HH:MM:SS : 
 DATETIME_RANGE_INPUT = "Quiere usar un rango de tiempo para buscar? (Y/N) "
 MAC_USER_INP = "Ingrese la MAC del Usuario para analizar: "
 AP_INPUT = "Ingrese la MAC AP para buscar: "
+SPECIFIC_DATE_INPUT = "Ingrese una fecha fija con este formato >>> DD/MM/YYYY HH:MM:SS :  "
 
 #Mensajes
 RETURN_MENU = "Menu principal"
